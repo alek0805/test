@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<label for="test">Input Value</label>
+		<input type="text" name="test" id="test" title="TEST" onkeyup="sortFunction(event)"><br>
+		<span id="s-test">A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</span>
+	</body>
+</html>
+<script type="text/javascript">
+	function sortFunction(event){
+		var x = event.which || event.keyCode;
+		var sort_value = parseInt(document.getElementById("test").value);
+		var base_kcode = 63;
+		var res="";
+		var s_code="";
+		if (((x > 47) && (x < 58)) || ((x > 95) && (x < 106))){
+			if (sort_value>26) {
+				sort_value = sort_value%26;
+			};
+			for(var i = 0;i < 26;i++){
+				base_kcode = base_kcode + sort_value;
+				if (base_kcode > 90) {
+					base_kcode = base_kcode-90;
+					base_kcode = base_kcode + 64;
+				}
+				s_code = String.fromCharCode(base_kcode);
+				res = res + s_code + ",";
+			}
+			document.getElementById("s-test").innerText = res;
+		}else{
+			alert('input numbers only');
+		}
+	}
+</script>
